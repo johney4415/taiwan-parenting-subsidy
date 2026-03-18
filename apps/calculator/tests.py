@@ -7,6 +7,7 @@ from .engine import (
     CalculatorInput,
     calculate_all,
     calculate_birth_bonus,
+    calculate_central_birth_subsidy,
     calculate_childcare_allowance,
     calculate_daycare_subsidy,
     calculate_parental_leave,
@@ -239,6 +240,9 @@ class TestCalculateAll(SimpleTestCase):
             insured_salary=40000,
         )
         subsidy_data = {
+            "central_birth_subsidy": {
+                "central_birth_subsidy": {"amount": 100000},
+            },
             "birth_bonus": {"cities": {"TPE": SAMPLE_BIRTH_BONUS_CITY}},
             "childcare_allowance": {
                 "central": SAMPLE_CENTRAL_CHILDCARE,
@@ -253,9 +257,15 @@ class TestCalculateAll(SimpleTestCase):
         }
         result = calculate_all(user_input, subsidy_data)
 
-        # Should have birth bonus as one-time
-        self.assertEqual(len(result.one_time_subsidies), 1)
-        self.assertEqual(result.one_time_subsidies[0].amount, 40000)
+        # Should have central birth subsidy + birth bonus as one-time
+        self.assertEqual(len(result.one_time_subsidies), 2)
+        one_time_names = [s.name for s in result.one_time_subsidies]
+        self.assertIn("中央生育補助", one_time_names)
+        self.assertIn("生育獎勵金", one_time_names)
+
+        # Central birth subsidy: insured 40000 × 2 = 80000 < 100000, so 100000
+        cbs = [s for s in result.one_time_subsidies if s.name == "中央生育補助"][0]
+        self.assertEqual(cbs.amount, 100000)
 
         # Should have daycare subsidy + parental leave (not childcare allowance)
         monthly_names = [s.name for s in result.monthly_subsidies]
@@ -273,6 +283,9 @@ class TestCalculateAll(SimpleTestCase):
             insured_salary=0,
         )
         subsidy_data = {
+            "central_birth_subsidy": {
+                "central_birth_subsidy": {"amount": 100000},
+            },
             "birth_bonus": {"cities": {"TPE": SAMPLE_BIRTH_BONUS_CITY}},
             "childcare_allowance": {
                 "central": SAMPLE_CENTRAL_CHILDCARE,
@@ -283,6 +296,10 @@ class TestCalculateAll(SimpleTestCase):
             "daycare_fees": SAMPLE_FEE_DATA,
         }
         result = calculate_all(user_input, subsidy_data)
+
+        # Central birth subsidy: no insurance, full 100k
+        cbs = [s for s in result.one_time_subsidies if s.name == "中央生育補助"][0]
+        self.assertEqual(cbs.amount, 100000)
 
         # Should have childcare allowance (not daycare subsidy)
         monthly_names = [s.name for s in result.monthly_subsidies]

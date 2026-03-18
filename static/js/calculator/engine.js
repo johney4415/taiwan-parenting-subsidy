@@ -152,6 +152,35 @@ const SubsidyEngine = (() => {
     return null;
   }
 
+  function calculateCentralBirthSubsidy(centralData, insuredSalary) {
+    var cbs = centralData.central_birth_subsidy || {};
+    var guaranteed = cbs.amount || 100000;
+
+    // Labor insurance birth benefit = avg insured salary × 2 months
+    var insuranceBenefit = insuredSalary * 2;
+    var topUp = Math.max(0, guaranteed - insuranceBenefit);
+    var total = Math.max(guaranteed, insuranceBenefit);
+
+    var notes = [];
+    if (insuranceBenefit > 0) {
+      notes.push("勞保生育給付 " + insuranceBenefit.toLocaleString() + " 元");
+      if (topUp > 0) {
+        notes.push("中央補足 " + topUp.toLocaleString() + " 元");
+      } else {
+        notes.push("勞保給付已超過 10 萬，領取較高金額");
+      }
+    } else {
+      notes.push("無社會保險，中央全額補助 10 萬元");
+    }
+
+    return {
+      name: "中央生育補助",
+      type: "one_time",
+      amount: total,
+      notes: notes,
+    };
+  }
+
   function estimateMonthlyCost(careType, feeData, cityPublicFee) {
     const feeRanges = feeData.fee_ranges || {};
 
@@ -239,6 +268,7 @@ const SubsidyEngine = (() => {
       notes: [],
     };
 
+    const centralBirthData = subsidyData.central_birth_subsidy || {};
     const birthBonusData = subsidyData.birth_bonus || {};
     const childcareData = subsidyData.childcare_allowance || {};
     const daycareData = subsidyData.daycare_subsidy || {};
@@ -246,6 +276,13 @@ const SubsidyEngine = (() => {
     const feeData = subsidyData.daycare_fees || {};
 
     const cityCode = userInput.city_code;
+
+    // 0. Central birth subsidy (2026 guaranteed 100k)
+    const cbs = calculateCentralBirthSubsidy(
+      centralBirthData,
+      userInput.insured_salary
+    );
+    if (cbs) output.one_time_subsidies.push(cbs);
 
     // 1. Birth bonus
     const cityBonus = (birthBonusData.cities || {})[cityCode] || {};
@@ -318,6 +355,7 @@ const SubsidyEngine = (() => {
 
   return {
     calculateAll: calculateAll,
+    calculateCentralBirthSubsidy: calculateCentralBirthSubsidy,
     calculateBirthBonus: calculateBirthBonus,
     calculateChildcareAllowance: calculateChildcareAllowance,
     calculateDaycareSubsidy: calculateDaycareSubsidy,

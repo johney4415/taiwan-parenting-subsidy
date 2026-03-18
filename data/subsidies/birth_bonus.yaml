@@ -1,9 +1,9 @@
 version: "2026.03"
 last_verified: "2026-03-18"
-description: "各縣市生育獎勵金（一次性補助）"
+description: "各縣市生育獎勵金（一次性補助，可與中央生育補助10萬疊加）"
 
-# Note: Amounts in NTD. Data reflects 2025-2026 policies.
-# Some cities have updated policies effective 2025.
+# Note: Amounts in NTD. Data reflects 2026 policies.
+# These are LOCAL city bonuses, separate from the central 100,000 subsidy.
 
 cities:
   TPE:
@@ -31,10 +31,10 @@ cities:
         amount: 30000
         note: ""
       - birth_order: 2
-        amount: 30000
+        amount: 40000
         note: ""
       - birth_order: 3
-        amount: 30000
+        amount: 50000
         note: ""
     eligibility:
       registration_months: 10
@@ -46,10 +46,10 @@ cities:
     name: 基隆市
     amounts:
       - birth_order: 1
-        amount: 20000
+        amount: 30000
         note: ""
       - birth_order: 2
-        amount: 20000
+        amount: 30000
         note: ""
       - birth_order: 3
         amount: 30000
@@ -85,10 +85,10 @@ cities:
         amount: 30000
         note: ""
       - birth_order: 2
-        amount: 50000
+        amount: 30000
         note: ""
       - birth_order: 3
-        amount: 50000
+        amount: 30000
         note: ""
     eligibility:
       registration_months: 12
@@ -100,10 +100,10 @@ cities:
     name: 新竹縣
     amounts:
       - birth_order: 1
-        amount: 20000
+        amount: 10000
         note: ""
       - birth_order: 2
-        amount: 30000
+        amount: 20000
         note: ""
       - birth_order: 3
         amount: 50000
@@ -118,13 +118,13 @@ cities:
     name: 苗栗縣
     amounts:
       - birth_order: 1
-        amount: 10000
-        note: "Paid in installments"
+        amount: 20000
+        note: ""
       - birth_order: 2
         amount: 20000
         note: ""
       - birth_order: 3
-        amount: 40000
+        amount: 20000
         note: ""
     eligibility:
       registration_months: 12
@@ -139,10 +139,10 @@ cities:
         amount: 20000
         note: ""
       - birth_order: 2
-        amount: 30000
+        amount: 20000
         note: ""
       - birth_order: 3
-        amount: 50000
+        amount: 30000
         note: "Third child and above"
     eligibility:
       registration_months: 6
@@ -157,10 +157,10 @@ cities:
         amount: 30000
         note: ""
       - birth_order: 2
-        amount: 30000
+        amount: 50000
         note: ""
       - birth_order: 3
-        amount: 60000
+        amount: 80000
         note: ""
     eligibility:
       registration_months: 6
@@ -172,13 +172,13 @@ cities:
     name: 南投縣
     amounts:
       - birth_order: 1
-        amount: 20000
+        amount: 10000
         note: ""
       - birth_order: 2
-        amount: 20000
+        amount: 15000
         note: ""
       - birth_order: 3
-        amount: 30000
+        amount: 20000
         note: ""
     eligibility:
       registration_months: 6
@@ -190,14 +190,14 @@ cities:
     name: 雲林縣
     amounts:
       - birth_order: 1
-        amount: 20000
+        amount: 30000
         note: ""
       - birth_order: 2
         amount: 30000
         note: ""
       - birth_order: 3
-        amount: 30000
-        note: ""
+        amount: 100000
+        note: "Third child bonus significantly higher"
     eligibility:
       registration_months: 6
       income_limit: null
@@ -208,7 +208,7 @@ cities:
     name: 嘉義市
     amounts:
       - birth_order: 1
-        amount: 20000
+        amount: 30000
         note: ""
       - birth_order: 2
         amount: 30000
@@ -247,7 +247,7 @@ cities:
         amount: 20000
         note: ""
       - birth_order: 2
-        amount: 30000
+        amount: 20000
         note: ""
       - birth_order: 3
         amount: 30000
@@ -268,7 +268,7 @@ cities:
         amount: 30000
         note: ""
       - birth_order: 3
-        amount: 50000
+        amount: 30000
         note: ""
     eligibility:
       registration_months: 6
@@ -286,7 +286,7 @@ cities:
         amount: 30000
         note: ""
       - birth_order: 3
-        amount: 40000
+        amount: 30000
         note: ""
     eligibility:
       registration_months: 6
@@ -298,13 +298,13 @@ cities:
     name: 宜蘭縣
     amounts:
       - birth_order: 1
-        amount: 20000
+        amount: 18000
         note: ""
       - birth_order: 2
-        amount: 30000
+        amount: 18000
         note: ""
       - birth_order: 3
-        amount: 50000
+        amount: 18000
         note: ""
     eligibility:
       registration_months: 12
@@ -319,10 +319,10 @@ cities:
         amount: 20000
         note: ""
       - birth_order: 2
-        amount: 30000
+        amount: 20000
         note: ""
       - birth_order: 3
-        amount: 50000
+        amount: 20000
         note: ""
     eligibility:
       registration_months: 12
@@ -334,13 +334,13 @@ cities:
     name: 台東縣
     amounts:
       - birth_order: 1
-        amount: 10000
+        amount: 40000
         note: ""
       - birth_order: 2
-        amount: 15000
+        amount: 45000
         note: ""
       - birth_order: 3
-        amount: 20000
+        amount: 50000
         note: ""
     eligibility:
       registration_months: 6
@@ -352,13 +352,13 @@ cities:
     name: 澎湖縣
     amounts:
       - birth_order: 1
-        amount: 30000
+        amount: 40000
         note: ""
       - birth_order: 2
-        amount: 50000
+        amount: 60000
         note: ""
       - birth_order: 3
-        amount: 70000
+        amount: 80000
         note: "Generous bonus for island retention"
     eligibility:
       registration_months: 6
@@ -370,14 +370,14 @@ cities:
     name: 金門縣
     amounts:
       - birth_order: 1
-        amount: 40000
+        amount: 20000
         note: ""
       - birth_order: 2
-        amount: 60000
+        amount: 20000
         note: ""
       - birth_order: 3
-        amount: 80000
-        note: "Highest in Taiwan for island retention"
+        amount: 20000
+        note: ""
     eligibility:
       registration_months: 6
       income_limit: null
@@ -388,13 +388,13 @@ cities:
     name: 連江縣
     amounts:
       - birth_order: 1
-        amount: 40000
+        amount: 30000
         note: ""
       - birth_order: 2
         amount: 60000
         note: ""
       - birth_order: 3
-        amount: 80000
+        amount: 90000
         note: ""
     eligibility:
       registration_months: 6

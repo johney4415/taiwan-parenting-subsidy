@@ -1,0 +1,48 @@
+version: "2026.03"
+last_verified: "2026-03-18"
+description: "中央生育補助（2026/1/1 起，保底 10 萬元）"
+
+# Part of the "好孕三方案" policy package
+# Effective from 2026-01-01 for all newborns
+
+central_birth_subsidy:
+  amount: 100000
+  effective_date: "2026-01-01"
+  description: "Social insurance birth benefit + central subsidy combined minimum 100,000 NTD per child"
+
+  calculation:
+    method: "top_up"
+    note: >
+      Central government guarantees minimum 100,000 NTD per newborn.
+      If social insurance birth benefit (labor/national/civil servant/military)
+      is less than 100,000, government tops up the difference.
+      If social insurance benefit exceeds 100,000, parent receives the higher amount.
+    examples:
+      - insured_salary: 30000
+        insurance_benefit: 60000
+        central_top_up: 40000
+        total: 100000
+        note: "Labor insurance: avg salary × 2 months = 60,000; central tops up 40,000"
+      - insured_salary: 45800
+        insurance_benefit: 91600
+        central_top_up: 8400
+        total: 100000
+        note: "Labor insurance: 45,800 × 2 = 91,600; central tops up 8,400"
+      - insured_salary: 0
+        insurance_benefit: 0
+        central_top_up: 100000
+        total: 100000
+        note: "No social insurance: central pays full 100,000"
+
+  eligibility:
+    conditions:
+      - "Newborn born on or after 2026-01-01"
+      - "Applies regardless of parent's insurance status"
+      - "Twins receive 200,000 (100,000 per child)"
+    income_limit: null
+
+  stacking:
+    - "Can be received together with local city birth bonus"
+    - "Separate from monthly childcare allowance / daycare subsidy"
+
+  source_url: "https://www.mol.gov.tw/1607/1632/1633/84736/post"

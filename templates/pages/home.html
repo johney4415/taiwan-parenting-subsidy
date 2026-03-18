@@ -35,8 +35,8 @@
         <div class="mt-1 text-sm text-gray-600">縣市資料</div>
       </div>
       <div class="text-center">
-        <div class="text-3xl font-bold text-primary-600">4+</div>
-        <div class="mt-1 text-sm text-gray-600">補助類型</div>
+        <div class="text-3xl font-bold text-primary-600">10萬</div>
+        <div class="mt-1 text-sm text-gray-600">中央生育補助（2026）</div>
       </div>
       <div class="text-center">
         <div class="text-3xl font-bold text-primary-600">5,000</div>
@@ -53,12 +53,24 @@
 <!-- Subsidy types overview -->
 <section class="py-16">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <h2 class="section-title text-center">四大補助一次看</h2>
+    <h2 class="section-title text-center">五大補助一次看</h2>
     <p class="mx-auto mt-4 max-w-2xl text-center text-gray-600">
       從懷孕到孩子長大，政府提供多種補助方案。了解你可以申請哪些。
     </p>
 
-    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- Central birth subsidy -->
+      <a href="{{ SITE_PREFIX }}/subsidies/type/central_birth_subsidy/" class="card group border-2 border-primary-200 bg-primary-50/30">
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100 text-primary-600 group-hover:bg-primary-200 transition-colors">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-900">中央生育補助</h3>
+        <p class="mt-2 text-sm text-gray-600">2026 年新制！每胎保底 10 萬元，可與各縣市獎勵金疊加。</p>
+        <div class="mt-4 text-sm font-medium text-primary-600">了解更多 &rarr;</div>
+      </a>
+
       <!-- Birth bonus -->
       <a href="{{ SITE_PREFIX }}/subsidies/type/birth_bonus/" class="card group">
         <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-pink-100 text-pink-600 group-hover:bg-pink-200 transition-colors">

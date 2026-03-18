@@ -4,6 +4,7 @@ from django.core.management.base import BaseCommand, CommandError
 
 from apps.core.data_loader import (
     load_birth_bonus,
+    load_central_birth_subsidy,
     load_childcare_allowance,
     load_cities,
     load_daycare_fees,
@@ -64,6 +65,16 @@ class Command(BaseCommand):
             )
         except Exception as e:
             errors.append(f"Failed to load birth bonus: {e}")
+
+        # Validate central birth subsidy
+        try:
+            data = load_central_birth_subsidy()
+            cbs = data.get("central_birth_subsidy", {})
+            if not cbs.get("amount"):
+                errors.append("Central birth subsidy: no amount defined")
+            self.stdout.write("  Central birth subsidy: loaded")
+        except Exception as e:
+            errors.append(f"Failed to load central birth subsidy: {e}")
 
         # Validate childcare allowance
         try:

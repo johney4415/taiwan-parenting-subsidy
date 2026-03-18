@@ -7,7 +7,13 @@ from django_distill import distill_path
 from apps.core.data_loader import load_cities
 from apps.pages import views
 
-SUBSIDY_TYPES = ["birth_bonus", "childcare_allowance", "daycare_subsidy", "parental_leave"]
+SUBSIDY_TYPES = [
+    "central_birth_subsidy",
+    "birth_bonus",
+    "childcare_allowance",
+    "daycare_subsidy",
+    "parental_leave",
+]
 
 
 def get_all_city_slugs() -> Iterator[dict[str, str]]:

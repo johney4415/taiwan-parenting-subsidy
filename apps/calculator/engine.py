@@ -203,6 +203,42 @@ def calculate_parental_leave(
     return None
 
 
+def calculate_central_birth_subsidy(
+    central_data: dict[str, Any],
+    insured_salary: int,
+) -> SubsidyResult | None:
+    """Calculate central birth subsidy (2026 guaranteed 100k).
+
+    The government guarantees a minimum of 100,000 NTD per newborn.
+    If the social insurance birth benefit is less than 100,000,
+    the government tops up the difference.
+    """
+    cbs = central_data.get("central_birth_subsidy", {})
+    guaranteed = cbs.get("amount", 100000)
+
+    # Labor insurance birth benefit = avg insured salary × 2 months
+    insurance_benefit = insured_salary * 2
+    top_up = max(0, guaranteed - insurance_benefit)
+    total = max(guaranteed, insurance_benefit)
+
+    notes = []
+    if insurance_benefit > 0:
+        notes.append(f"勞保生育給付 {insurance_benefit:,} 元")
+        if top_up > 0:
+            notes.append(f"中央補足 {top_up:,} 元")
+        else:
+            notes.append("勞保給付已超過 10 萬，領取較高金額")
+    else:
+        notes.append("無社會保險，中央全額補助 10 萬元")
+
+    return SubsidyResult(
+        name="中央生育補助",
+        type="one_time",
+        amount=total,
+        notes=notes,
+    )
+
+
 def estimate_monthly_cost(
     care_type: str,
     fee_data: dict[str, Any],
@@ -237,6 +273,7 @@ def calculate_all(
     """Run all calculations and return comprehensive results."""
     output = CalculatorOutput()
 
+    central_birth_data = subsidy_data.get("central_birth_subsidy", {})
     birth_bonus_data = subsidy_data.get("birth_bonus", {})
     childcare_data = subsidy_data.get("childcare_allowance", {})
     daycare_data = subsidy_data.get("daycare_subsidy", {})
@@ -244,6 +281,14 @@ def calculate_all(
     fee_data = subsidy_data.get("daycare_fees", {})
 
     city_code = user_input.city_code
+
+    # 0. Central birth subsidy (2026 guaranteed 100k)
+    cbs = calculate_central_birth_subsidy(
+        central_birth_data,
+        user_input.insured_salary,
+    )
+    if cbs:
+        output.one_time_subsidies.append(cbs)
 
     # 1. Birth bonus
     city_bonus = birth_bonus_data.get("cities", {}).get(city_code, {})

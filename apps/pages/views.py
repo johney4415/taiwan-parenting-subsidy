@@ -12,7 +12,8 @@ from apps.core.data_loader import (
 )
 
 SUBSIDY_TYPE_LABELS: dict[str, str] = {
-    "birth_bonus": "生育獎勵金",
+    "central_birth_subsidy": "中央生育補助（保底10萬）",
+    "birth_bonus": "各縣市生育獎勵金",
     "childcare_allowance": "育兒津貼",
     "daycare_subsidy": "托育補助",
     "parental_leave": "育嬰留停津貼",

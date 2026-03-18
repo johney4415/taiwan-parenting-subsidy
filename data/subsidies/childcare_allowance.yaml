@@ -9,7 +9,7 @@ central:
     - birth_order: 1
       monthly: 5000
     - birth_order: 2
-      monthly: 7000
+      monthly: 6000
     - birth_order: 3
       monthly: 7000
       note: "Third child and above"

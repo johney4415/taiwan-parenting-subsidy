@@ -68,9 +68,18 @@ def load_daycare_fees() -> dict[str, Any]:
     return _load_yaml(settings.DATA_DIR / "subsidies" / "daycare_fees.yaml")
 
 
+@lru_cache(maxsize=1)
+def load_central_birth_subsidy() -> dict[str, Any]:
+    """Load central birth subsidy (2026 guaranteed 100k) data."""
+    return _load_yaml(
+        settings.DATA_DIR / "subsidies" / "central_birth_subsidy.yaml"
+    )
+
+
 def load_all_subsidies() -> dict[str, Any]:
     """Load all subsidy data combined."""
     return {
+        "central_birth_subsidy": load_central_birth_subsidy(),
         "birth_bonus": load_birth_bonus(),
         "childcare_allowance": load_childcare_allowance(),
         "daycare_subsidy": load_daycare_subsidy(),
@@ -85,6 +94,9 @@ def get_city_subsidies(city_code: str) -> dict[str, Any]:
     childcare = load_childcare_allowance()
 
     result: dict[str, Any] = {}
+
+    # Central birth subsidy (2026, guaranteed 100k)
+    result["central_birth_subsidy"] = load_central_birth_subsidy()
 
     # Birth bonus
     if city_code in birth_bonus.get("cities", {}):
