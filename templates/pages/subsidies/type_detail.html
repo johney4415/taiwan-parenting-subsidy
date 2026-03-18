@@ -7,9 +7,9 @@
 <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
   <!-- Breadcrumb -->
   <nav class="mb-6 text-sm text-gray-500">
-    <a href="/" class="hover:text-primary-600">首頁</a>
+    <a href="{{ SITE_PREFIX }}/" class="hover:text-primary-600">首頁</a>
     <span class="mx-2">/</span>
-    <a href="/subsidies/" class="hover:text-primary-600">補助總覽</a>
+    <a href="{{ SITE_PREFIX }}/subsidies/" class="hover:text-primary-600">補助總覽</a>
     <span class="mx-2">/</span>
     <span class="text-gray-900">{{ subsidy_label }}</span>
   </nav>
@@ -34,7 +34,7 @@
         {% for city in cities %}
         <tr class="hover:bg-gray-50">
           <td class="whitespace-nowrap px-4 py-3 text-sm font-medium">
-            <a href="/subsidies/city/{{ city.slug }}/" class="text-primary-600 hover:underline">{{ city.name }}</a>
+            <a href="{{ SITE_PREFIX }}/subsidies/city/{{ city.slug }}/" class="text-primary-600 hover:underline">{{ city.name }}</a>
           </td>
           <td class="whitespace-nowrap px-4 py-3 text-right text-sm text-gray-700" data-city="{{ city.code }}" data-order="1">—</td>
           <td class="whitespace-nowrap px-4 py-3 text-right text-sm text-gray-700" data-city="{{ city.code }}" data-order="2">—</td>
@@ -161,7 +161,7 @@
 
   <!-- CTA -->
   <div class="mt-12 text-center">
-    <a href="/calculator/" class="btn-primary text-base px-8 py-3">
+    <a href="{{ SITE_PREFIX }}/calculator/" class="btn-primary text-base px-8 py-3">
       試算我的完整補助
     </a>
   </div>

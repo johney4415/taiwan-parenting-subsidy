@@ -182,6 +182,7 @@
 {% endblock %}
 
 {% block extra_js %}
+<script>window.SITE_STATIC_PREFIX = "{% static '' %}";</script>
 <script src="{% static 'js/calculator/engine.js' %}"></script>
 <script src="{% static 'js/calculator/ui.js' %}"></script>
 <script src="{% static 'js/calculator/renderer.js' %}"></script>

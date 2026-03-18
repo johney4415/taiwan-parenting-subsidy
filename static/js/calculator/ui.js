@@ -13,7 +13,8 @@ const CalculatorUI = (() => {
   }
 
   function loadData() {
-    fetch("/static/data/subsidies.json")
+    var staticPrefix = window.SITE_STATIC_PREFIX || "/static/";
+    fetch(staticPrefix + "data/subsidies.json")
       .then((response) => {
         if (!response.ok) throw new Error("Failed to load subsidy data");
         return response.json();

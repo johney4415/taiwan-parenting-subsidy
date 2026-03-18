@@ -6,6 +6,6 @@ ALLOWED_HOSTS = [
     ".github.io",
 ]
 
-# For GitHub Pages static files path
-# Change this if using a custom domain (use "/static/")
-STATIC_URL = "/static/"
+# GitHub Pages deploys under /repo-name/
+SITE_PREFIX = "/taiwan-parenting-subsidy"
+STATIC_URL = SITE_PREFIX + "/static/"

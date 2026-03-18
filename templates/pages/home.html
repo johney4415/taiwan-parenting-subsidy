@@ -15,10 +15,10 @@
         讓你一次看清楚、不遺漏任何一筆補助。
       </p>
       <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-        <a href="/calculator/" class="btn-primary text-base px-8 py-3">
+        <a href="{{ SITE_PREFIX }}/calculator/" class="btn-primary text-base px-8 py-3">
           開始試算我的補助
         </a>
-        <a href="/subsidies/" class="btn-secondary text-base px-8 py-3">
+        <a href="{{ SITE_PREFIX }}/subsidies/" class="btn-secondary text-base px-8 py-3">
           瀏覽所有補助
         </a>
       </div>
@@ -60,7 +60,7 @@
 
     <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       <!-- Birth bonus -->
-      <a href="/subsidies/type/birth_bonus/" class="card group">
+      <a href="{{ SITE_PREFIX }}/subsidies/type/birth_bonus/" class="card group">
         <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-pink-100 text-pink-600 group-hover:bg-pink-200 transition-colors">
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
@@ -72,7 +72,7 @@
       </a>
 
       <!-- Childcare allowance -->
-      <a href="/subsidies/type/childcare_allowance/" class="card group">
+      <a href="{{ SITE_PREFIX }}/subsidies/type/childcare_allowance/" class="card group">
         <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600 group-hover:bg-blue-200 transition-colors">
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
@@ -84,7 +84,7 @@
       </a>
 
       <!-- Daycare subsidy -->
-      <a href="/subsidies/type/daycare_subsidy/" class="card group">
+      <a href="{{ SITE_PREFIX }}/subsidies/type/daycare_subsidy/" class="card group">
         <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 text-green-600 group-hover:bg-green-200 transition-colors">
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
@@ -96,7 +96,7 @@
       </a>
 
       <!-- Parental leave -->
-      <a href="/subsidies/type/parental_leave/" class="card group">
+      <a href="{{ SITE_PREFIX }}/subsidies/type/parental_leave/" class="card group">
         <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-amber-100 text-amber-600 group-hover:bg-amber-200 transition-colors">
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -126,7 +126,7 @@
         </h3>
         <div class="flex flex-wrap gap-2">
           {% for city in region_cities %}
-          <a href="/subsidies/city/{{ city.slug }}/"
+          <a href="{{ SITE_PREFIX }}/subsidies/city/{{ city.slug }}/"
              class="rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700 transition-colors">
             {{ city.name }}
           </a>
@@ -145,7 +145,7 @@
     <p class="mx-auto mt-4 max-w-xl text-lg text-primary-100">
       輸入你的基本資訊，幫你算出可以申請的所有補助，還有建議的生產時機。
     </p>
-    <a href="/calculator/" class="mt-8 inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 text-base font-semibold text-primary-600 hover:bg-primary-50 transition-colors">
+    <a href="{{ SITE_PREFIX }}/calculator/" class="mt-8 inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 text-base font-semibold text-primary-600 hover:bg-primary-50 transition-colors">
       前往試算器
     </a>
   </div>

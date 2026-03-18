@@ -36,6 +36,7 @@ TEMPLATES = [
             "context_processors": [
                 "django.template.context_processors.request",
                 "django.template.context_processors.static",
+                "apps.core.context_processors.site_prefix",
             ],
         },
     },
@@ -55,6 +56,9 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Site prefix for GitHub Pages (empty string for custom domain or local dev)
+SITE_PREFIX = ""
 
 # Data directory
 DATA_DIR = BASE_DIR / "data"
