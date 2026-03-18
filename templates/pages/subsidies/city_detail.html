@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ city.name }}補助資訊 — 台灣托育補助資訊網{% endblock %}
+{% block meta_description %}{{ city.name }}生育獎勵金、育兒津貼、托育補助完整資訊與金額一覽。{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+  <!-- Breadcrumb -->
+  <nav class="mb-6 text-sm text-gray-500">
+    <a href="/" class="hover:text-primary-600">首頁</a>
+    <span class="mx-2">/</span>
+    <a href="/subsidies/" class="hover:text-primary-600">補助總覽</a>
+    <span class="mx-2">/</span>
+    <span class="text-gray-900">{{ city.name }}</span>
+  </nav>
+
+  <h1 class="section-title">{{ city.name }}補助資訊</h1>
+  <p class="mt-2 text-gray-600">以下為{{ city.name }}目前可申請的生育及托育補助。</p>
+
+  <div class="mt-10 space-y-10">
+    <!-- Birth bonus -->
+    {% if subsidies.birth_bonus %}
+    <section class="card">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-pink-100 text-pink-600">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+          </svg>
+        </div>
+        <h2 class="text-xl font-bold text-gray-900">生育獎勵金</h2>
+        <span class="subsidy-badge bg-pink-100 text-pink-700">一次性</span>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead>
+            <tr>
+              <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">胎次</th>
+              <th class="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">金額</th>
+              <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">備註</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {% for amt in subsidies.birth_bonus.amounts %}
+            <tr>
+              <td class="px-4 py-2 text-sm text-gray-700">第{{ amt.birth_order }}胎{% if amt.birth_order >= 3 %}（含以上）{% endif %}</td>
+              <td class="px-4 py-2 text-right text-sm font-semibold text-gray-900">{{ amt.amount|floatformat:0 }} 元</td>
+              <td class="px-4 py-2 text-sm text-gray-500">{{ amt.note }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-4 space-y-1 text-sm text-gray-600">
+        {% if subsidies.birth_bonus.eligibility.registration_months %}
+        <p>需設籍滿 <strong>{{ subsidies.birth_bonus.eligibility.registration_months }} 個月</strong></p>
+        {% endif %}
+        {% if subsidies.birth_bonus.application_deadline_days %}
+        <p>申請期限：出生後 <strong>{{ subsidies.birth_bonus.application_deadline_days }} 天</strong>內</p>
+        {% endif %}
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- Childcare allowance -->
+    <section class="card">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
+          </svg>
+        </div>
+        <h2 class="text-xl font-bold text-gray-900">育兒津貼</h2>
+        <span class="subsidy-badge bg-blue-100 text-blue-700">每月</span>
+      </div>
+
+      <div class="space-y-3 text-sm text-gray-700">
+        <p>中央政府每月發放，0-5 歲自行照顧或送私立幼兒園可領取。</p>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead>
+              <tr>
+                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">胎次</th>
+                <th class="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">中央</th>
+                <th class="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">地方加碼</th>
+                <th class="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">合計</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              {% for amt in subsidies.childcare_allowance.central.base_amounts %}
+              <tr>
+                <td class="px-4 py-2 text-sm text-gray-700">第{{ amt.birth_order }}胎{% if amt.birth_order >= 3 %}（含以上）{% endif %}</td>
+                <td class="px-4 py-2 text-right text-sm text-gray-700">{{ amt.monthly|floatformat:0 }} 元</td>
+                <td class="px-4 py-2 text-right text-sm text-gray-700">
+                  {% with supplement=subsidies.childcare_allowance.city_supplement %}
+                  {% if supplement.amounts %}
+                    {% for sa in supplement.amounts %}
+                      {% if sa.birth_order == amt.birth_order %}
+                        {{ sa.monthly|floatformat:0 }} 元
+                      {% endif %}
+                    {% endfor %}
+                  {% else %}
+                    0 元
+                  {% endif %}
+                  {% endwith %}
+                </td>
+                <td class="px-4 py-2 text-right text-sm font-semibold text-gray-900">—</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-gray-500">* 合計金額請使用試算器計算。與托育補助互斥，不可同時領取。</p>
+      </div>
+    </section>
+
+    <!-- Daycare subsidy -->
+    <section class="card">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-100 text-green-600">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
+          </svg>
+        </div>
+        <h2 class="text-xl font-bold text-gray-900">托育補助</h2>
+        <span class="subsidy-badge bg-green-100 text-green-700">每月</span>
+      </div>
+
+      <div class="space-y-3 text-sm text-gray-700">
+        <p>送公共化或準公共化托育，0-2 歲每月可領補助。</p>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="rounded-lg border border-gray-200 p-4">
+            <h4 class="font-semibold text-gray-900">公共化托育</h4>
+            <p class="text-xs text-gray-500 mb-2">公設民營托嬰中心、社區公共托育家園</p>
+            {% for amt in subsidies.daycare_subsidy.central.public.amounts %}
+            <div class="flex justify-between py-1">
+              <span>第{{ amt.birth_order }}胎</span>
+              <span class="font-semibold">{{ amt.monthly|floatformat:0 }} 元/月</span>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="rounded-lg border border-gray-200 p-4">
+            <h4 class="font-semibold text-gray-900">準公共化托育</h4>
+            <p class="text-xs text-gray-500 mb-2">簽約保母、準公共托嬰中心</p>
+            {% for amt in subsidies.daycare_subsidy.central.quasi_public.amounts %}
+            <div class="flex justify-between py-1">
+              <span>第{{ amt.birth_order }}胎</span>
+              <span class="font-semibold">{{ amt.monthly|floatformat:0 }} 元/月</span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <p class="text-xs text-gray-500">* 與育兒津貼互斥，不可同時領取。</p>
+      </div>
+    </section>
+
+    <!-- Parental leave -->
+    <section class="card">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-100 text-amber-600">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h2 class="text-xl font-bold text-gray-900">育嬰留停津貼</h2>
+        <span class="subsidy-badge bg-amber-100 text-amber-700">每月（最長6個月）</span>
+      </div>
+
+      <div class="space-y-3 text-sm text-gray-700">
+        {% with pl=subsidies.parental_leave.parental_leave %}
+        <div class="grid gap-4 sm:grid-cols-3">
+          <div class="text-center rounded-lg bg-gray-50 p-4">
+            <div class="text-2xl font-bold text-primary-600">{{ pl.salary_replacement_rate|floatformat:0 }}%</div>
+            <div class="mt-1 text-xs text-gray-500">薪資替代率</div>
+          </div>
+          <div class="text-center rounded-lg bg-gray-50 p-4">
+            <div class="text-2xl font-bold text-primary-600">{{ pl.max_months }}</div>
+            <div class="mt-1 text-xs text-gray-500">最長月數</div>
+          </div>
+          <div class="text-center rounded-lg bg-gray-50 p-4">
+            <div class="text-2xl font-bold text-primary-600">{{ pl.calculation.max_insured_salary|floatformat:0 }}</div>
+            <div class="mt-1 text-xs text-gray-500">投保薪資上限</div>
+          </div>
+        </div>
+        <ul class="mt-4 space-y-1 text-gray-600">
+          {% for note in pl.additional_notes %}
+          <li class="flex items-start gap-2">
+            <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+            {{ note }}
+          </li>
+          {% endfor %}
+        </ul>
+        {% endwith %}
+      </div>
+    </section>
+  </div>
+
+  <!-- CTA -->
+  <div class="mt-12 text-center">
+    <a href="/calculator/" class="btn-primary text-base px-8 py-3">
+      試算{{ city.name }}的完整補助
+    </a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+version: "2026.03"
+last_verified: "2026-03-18"
+description: "育嬰留職停薪津貼"
+
+parental_leave:
+  salary_replacement_rate: 0.8
+  max_months: 6
+  description: "Employment insurance pays 80% of average insured salary for up to 6 months"
+
+  eligibility:
+    min_insurance_years: 1
+    conditions:
+      - "Must have employment insurance for at least 1 year"
+      - "Child must be under 3 years old"
+      - "Both parents can apply separately (can overlap for different periods)"
+      - "Must be on parental leave from employer"
+
+  calculation:
+    base: "average_insured_salary"
+    rate: 0.8
+    max_insured_salary: 45800
+    note: "80% of average monthly insured salary, capped at max insured salary"
+
+  additional_notes:
+    - "Both parents can each take up to 6 months"
+    - "Parents can take leave simultaneously since 2022"
+    - "Employer must approve parental leave request"
+    - "Job is protected during leave period"

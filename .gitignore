@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Virtual environment
+venv/
+.env
+
+# Django
+staticfiles/
+db.sqlite3
+
+# Node
+node_modules/
+
+# Build output
+output/
+static/css/output.css
+static/data/subsidies.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

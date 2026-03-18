@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}關於本站 — 台灣托育補助資訊網{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+  <h1 class="section-title">關於本站</h1>
+
+  <div class="mt-8 prose prose-gray max-w-none">
+    <div class="card space-y-6">
+      <section>
+        <h2 class="text-xl font-semibold text-gray-900">為什麼做這個網站？</h2>
+        <p class="mt-2 text-gray-700">
+          台灣新生兒數持續下滑，但許多準父母不是不想生，而是因為「資訊落差」——不知道有哪些補助、托育資源、申請流程，導致用最悲觀的方式估算未來而卻步。
+        </p>
+        <p class="mt-2 text-gray-700">
+          本站的目標是整合所有生育與托育補助資訊，讓準父母能快速查詢、試算費用、了解最佳規劃時機。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-gray-900">資料來源</h2>
+        <p class="mt-2 text-gray-700">
+          本站資料彙整自各縣市政府官方網站及衛生福利部公告。我們定期驗證資料正確性，但政策可能隨時調整。
+        </p>
+        <p class="mt-2 text-sm text-gray-500">
+          最後驗證日期：2026 年 3 月
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-gray-900">免責聲明</h2>
+        <div class="mt-2 rounded-lg bg-yellow-50 border border-yellow-200 p-4 text-sm text-yellow-800">
+          <ul class="space-y-2">
+            <li>本站資訊僅供參考，不構成任何法律、財務或醫療建議。</li>
+            <li>實際補助金額、申請資格及流程請以各縣市政府最新公告為準。</li>
+            <li>試算結果為估算值，實際核發金額可能因個案情況而異。</li>
+            <li>本站不保證資料的即時性、完整性或準確性。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-gray-900">技術說明</h2>
+        <p class="mt-2 text-gray-700">
+          本站為靜態網站，不收集任何個人資料。所有計算均在您的瀏覽器中完成，不會傳送任何資訊到伺服器。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-gray-900">回報問題或建議</h2>
+        <p class="mt-2 text-gray-700">
+          如果您發現資料有誤或有任何建議，歡迎透過 GitHub Issues 回報。
+        </p>
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock %}

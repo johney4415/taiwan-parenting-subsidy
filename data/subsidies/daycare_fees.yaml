@@ -1,0 +1,68 @@
+version: "2026.03"
+last_verified: "2026-03-18"
+description: "各類型托育費用參考（月費，NTD）"
+
+# Average monthly costs by childcare type
+fee_ranges:
+  public_daycare:
+    description: "公設民營托嬰中心"
+    min: 5500
+    max: 12000
+    typical: 8000
+    note: "Varies by city, typically includes meals"
+
+  community_care:
+    description: "社區公共托育家園"
+    min: 8000
+    max: 14000
+    typical: 10000
+    note: "Smaller group size, home-like environment"
+
+  quasi_public_center:
+    description: "準公共托嬰中心"
+    min: 10000
+    max: 20000
+    typical: 15000
+    note: "After subsidy deduction, parents pay significantly less"
+
+  quasi_public_nanny:
+    description: "準公共保母（居家托育）"
+    min: 15000
+    max: 25000
+    typical: 20000
+    note: "Licensed nanny, signed government contract"
+
+  private_center:
+    description: "私立托嬰中心"
+    min: 15000
+    max: 35000
+    typical: 22000
+    note: "No government subsidy cap, prices vary widely"
+
+  private_nanny:
+    description: "私人保母（未加入準公共）"
+    min: 20000
+    max: 35000
+    typical: 25000
+    note: "Only eligible for childcare allowance, not daycare subsidy"
+
+# City-specific public daycare fee caps
+city_public_fees:
+  TPE:
+    name: 台北市
+    monthly_fee: 9000
+  NWT:
+    name: 新北市
+    monthly_fee: 8500
+  TYN:
+    name: 桃園市
+    monthly_fee: 8000
+  TXG:
+    name: 台中市
+    monthly_fee: 8500
+  TNN:
+    name: 台南市
+    monthly_fee: 7500
+  KHH:
+    name: 高雄市
+    monthly_fee: 7500

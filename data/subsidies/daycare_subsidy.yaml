@@ -1,0 +1,99 @@
+version: "2026.03"
+last_verified: "2026-03-18"
+description: "托育補助（0-2歲，送托公共化或準公共化托育）"
+
+# Central government daycare subsidies (monthly, NTD)
+# These apply when using public or quasi-public daycare centers
+central:
+  public:
+    description: "公共化托育（公設民營托嬰中心、社區公共托育家園）"
+    amounts:
+      - birth_order: 1
+        monthly: 7000
+      - birth_order: 2
+        monthly: 9000
+      - birth_order: 3
+        monthly: 9000
+        note: "Third child and above"
+
+  quasi_public:
+    description: "準公共化托育（簽約保母、準公共托嬰中心）"
+    amounts:
+      - birth_order: 1
+        monthly: 13000
+      - birth_order: 2
+        monthly: 15000
+      - birth_order: 3
+        monthly: 15000
+        note: "Third child and above"
+
+  eligibility:
+    max_age_years: 2
+    income_tax_rate_limit: 20
+    conditions:
+      - "Child is under 2 years old"
+      - "Using public or quasi-public childcare"
+      - "Household income tax rate below 20%"
+      - "Cannot receive childcare_allowance simultaneously"
+
+# City-level additional subsidies (monthly, NTD)
+city_supplements:
+  TPE:
+    name: 台北市
+    public_supplement:
+      - birth_order: 1
+        monthly: 3000
+    quasi_public_supplement:
+      - birth_order: 1
+        monthly: 3000
+    note: "Taipei adds NT$3,000/month"
+
+  NWT:
+    name: 新北市
+    public_supplement:
+      - birth_order: 1
+        monthly: 0
+    quasi_public_supplement:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  TYN:
+    name: 桃園市
+    public_supplement:
+      - birth_order: 1
+        monthly: 3000
+    quasi_public_supplement:
+      - birth_order: 1
+        monthly: 3000
+    note: "Taoyuan adds NT$3,000/month"
+
+  TXG:
+    name: 台中市
+    public_supplement:
+      - birth_order: 1
+        monthly: 0
+    quasi_public_supplement:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  TNN:
+    name: 台南市
+    public_supplement:
+      - birth_order: 1
+        monthly: 0
+    quasi_public_supplement:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  KHH:
+    name: 高雄市
+    public_supplement:
+      - birth_order: 1
+        monthly: 0
+    quasi_public_supplement:
+      - birth_order: 1
+        monthly: 0
+    note: ""

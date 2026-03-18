@@ -1,0 +1,4 @@
+Django>=5.0,<5.2
+django-distill>=3.0
+PyYAML>=6.0
+jsonschema>=4.20

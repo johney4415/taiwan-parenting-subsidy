@@ -1,0 +1,85 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Validate data
+        run: python manage.py validate_data
+        env:
+          DJANGO_SETTINGS_MODULE: config.settings.production
+
+      - name: Export JSON data
+        run: python manage.py export_json
+        env:
+          DJANGO_SETTINGS_MODULE: config.settings.production
+
+      - name: Build CSS
+        run: npm run build:css
+
+      - name: Run tests
+        run: python manage.py test apps.calculator --noinput
+        env:
+          DJANGO_SETTINGS_MODULE: config.settings.development
+
+      - name: Collect static files
+        run: python manage.py collectstatic --noinput
+        env:
+          DJANGO_SETTINGS_MODULE: config.settings.production
+
+      - name: Generate static site
+        run: python manage.py distill-local --force output/
+        env:
+          DJANGO_SETTINGS_MODULE: config.settings.production
+
+      - name: Copy static to output
+        run: cp -r staticfiles/ output/static/ 2>/dev/null || true
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: output/
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

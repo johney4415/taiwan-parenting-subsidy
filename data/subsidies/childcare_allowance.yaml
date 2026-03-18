@@ -1,0 +1,189 @@
+version: "2026.03"
+last_verified: "2026-03-18"
+description: "育兒津貼（0-5歲，自行照顧或私立幼兒園）"
+
+# Central government base amounts (monthly, NTD)
+# Applies when parents care for child themselves or use non-subsidized childcare
+central:
+  base_amounts:
+    - birth_order: 1
+      monthly: 5000
+    - birth_order: 2
+      monthly: 7000
+    - birth_order: 3
+      monthly: 7000
+      note: "Third child and above"
+
+  eligibility:
+    max_age_years: 5
+    income_tax_rate_limit: 20
+    conditions:
+      - "Not using public or quasi-public childcare services"
+      - "Child is under 5 years old"
+      - "Household income tax rate below 20%"
+
+# City-level additional subsidies (monthly, NTD)
+city_supplements:
+  TPE:
+    name: 台北市
+    amounts:
+      - birth_order: 1
+        monthly: 2500
+      - birth_order: 2
+        monthly: 2500
+      - birth_order: 3
+        monthly: 2500
+    note: "Taipei adds NT$2,500/month on top of central"
+
+  NWT:
+    name: 新北市
+    amounts:
+      - birth_order: 1
+        monthly: 0
+      - birth_order: 2
+        monthly: 0
+    note: ""
+
+  KEL:
+    name: 基隆市
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  TYN:
+    name: 桃園市
+    amounts:
+      - birth_order: 1
+        monthly: 3000
+      - birth_order: 2
+        monthly: 3000
+      - birth_order: 3
+        monthly: 3000
+    note: "Taoyuan adds NT$3,000/month on top of central"
+
+  HSZ:
+    name: 新竹市
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  HSH:
+    name: 新竹縣
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  ZMI:
+    name: 苗栗縣
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  TXG:
+    name: 台中市
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  CHW:
+    name: 彰化縣
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  NTO:
+    name: 南投縣
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  YUN:
+    name: 雲林縣
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  CYI:
+    name: 嘉義市
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  CYH:
+    name: 嘉義縣
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  TNN:
+    name: 台南市
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  KHH:
+    name: 高雄市
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  PIF:
+    name: 屏東縣
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  ILA:
+    name: 宜蘭縣
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  HUN:
+    name: 花蓮縣
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  TTT:
+    name: 台東縣
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  PEH:
+    name: 澎湖縣
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  KMN:
+    name: 金門縣
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""
+
+  LNN:
+    name: 連江縣
+    amounts:
+      - birth_order: 1
+        monthly: 0
+    note: ""

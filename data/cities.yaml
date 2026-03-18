@@ -1,0 +1,113 @@
+version: "2026.03"
+last_verified: "2026-03-18"
+
+cities:
+  - code: TPE
+    name: 台北市
+    slug: taipei
+    region: north
+
+  - code: NWT
+    name: 新北市
+    slug: new-taipei
+    region: north
+
+  - code: KEL
+    name: 基隆市
+    slug: keelung
+    region: north
+
+  - code: TYN
+    name: 桃園市
+    slug: taoyuan
+    region: north
+
+  - code: HSZ
+    name: 新竹市
+    slug: hsinchu-city
+    region: north
+
+  - code: HSH
+    name: 新竹縣
+    slug: hsinchu-county
+    region: north
+
+  - code: ZMI
+    name: 苗栗縣
+    slug: miaoli
+    region: central
+
+  - code: TXG
+    name: 台中市
+    slug: taichung
+    region: central
+
+  - code: CHW
+    name: 彰化縣
+    slug: changhua
+    region: central
+
+  - code: NTO
+    name: 南投縣
+    slug: nantou
+    region: central
+
+  - code: YUN
+    name: 雲林縣
+    slug: yunlin
+    region: central
+
+  - code: CYI
+    name: 嘉義市
+    slug: chiayi-city
+    region: south
+
+  - code: CYH
+    name: 嘉義縣
+    slug: chiayi-county
+    region: south
+
+  - code: TNN
+    name: 台南市
+    slug: tainan
+    region: south
+
+  - code: KHH
+    name: 高雄市
+    slug: kaohsiung
+    region: south
+
+  - code: PIF
+    name: 屏東縣
+    slug: pingtung
+    region: south
+
+  - code: ILA
+    name: 宜蘭縣
+    slug: yilan
+    region: east
+
+  - code: HUN
+    name: 花蓮縣
+    slug: hualien
+    region: east
+
+  - code: TTT
+    name: 台東縣
+    slug: taitung
+    region: east
+
+  - code: PEH
+    name: 澎湖縣
+    slug: penghu
+    region: island
+
+  - code: KMN
+    name: 金門縣
+    slug: kinmen
+    region: island
+
+  - code: LNN
+    name: 連江縣
+    slug: lienchiang
+    region: island

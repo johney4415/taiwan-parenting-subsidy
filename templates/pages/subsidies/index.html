@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}補助總覽 — 台灣托育補助資訊網{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+  <h1 class="section-title">補助總覽</h1>
+  <p class="mt-4 text-gray-600">一覽所有生育與托育相關補助，依類型或縣市查看。</p>
+
+  <!-- Filter controls -->
+  <div class="mt-8 flex flex-wrap gap-3" id="filter-controls">
+    <button data-filter="all" class="filter-btn active rounded-full bg-primary-600 px-4 py-2 text-sm font-medium text-white">
+      全部
+    </button>
+    {% for key, label in subsidy_types.items %}
+    <button data-filter="{{ key }}" class="filter-btn rounded-full border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:border-primary-300 hover:bg-primary-50">
+      {{ label }}
+    </button>
+    {% endfor %}
+  </div>
+
+  <!-- Subsidy type cards -->
+  <div class="mt-8 grid gap-6 sm:grid-cols-2">
+    {% for key, label in subsidy_types.items %}
+    <a href="/subsidies/type/{{ key }}/" class="card subsidy-item" data-type="{{ key }}">
+      <h3 class="text-lg font-semibold text-gray-900">{{ label }}</h3>
+      <p class="mt-2 text-sm text-gray-600">
+        {% if key == "birth_bonus" %}
+          一次性獎勵金，各縣市金額不同，依戶籍地申請。
+        {% elif key == "childcare_allowance" %}
+          0-5 歲每月可領，自行照顧或送私立幼兒園適用。
+        {% elif key == "daycare_subsidy" %}
+          送公共化或準公共化托育，0-2 歲每月補助。
+        {% elif key == "parental_leave" %}
+          投保薪資 80%，留職停薪期間可領，最長 6 個月。
+        {% endif %}
+      </p>
+      <span class="mt-4 inline-block text-sm font-medium text-primary-600">跨縣市比較 &rarr;</span>
+    </a>
+    {% endfor %}
+  </div>
+
+  <!-- City birth bonus comparison table -->
+  <div class="mt-16">
+    <h2 class="text-xl font-bold text-gray-900">各縣市生育獎勵金一覽</h2>
+    <p class="mt-2 text-sm text-gray-600">金額單位：新台幣（元），資料為 2025-2026 年度。</p>
+
+    <div class="mt-6 overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200 rounded-lg border border-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">縣市</th>
+            <th class="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">第一胎</th>
+            <th class="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">第二胎</th>
+            <th class="px-4 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">第三胎</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 bg-white">
+          {% for city in cities %}
+          {% with bonus=birth_bonus.cities %}
+          {% if city.code in bonus %}
+          <tr class="hover:bg-gray-50">
+            <td class="whitespace-nowrap px-4 py-3 text-sm font-medium text-gray-900">
+              <a href="/subsidies/city/{{ city.slug }}/" class="text-primary-600 hover:underline">{{ city.name }}</a>
+            </td>
+            {% for amt in bonus|default_if_none:"" %}
+            {% endfor %}
+            {% with city_data=bonus %}
+            <td class="whitespace-nowrap px-4 py-3 text-right text-sm text-gray-700">
+              —
+            </td>
+            <td class="whitespace-nowrap px-4 py-3 text-right text-sm text-gray-700">
+              —
+            </td>
+            <td class="whitespace-nowrap px-4 py-3 text-right text-sm text-gray-700">
+              —
+            </td>
+            {% endwith %}
+          </tr>
+          {% endif %}
+          {% endwith %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-3 text-xs text-gray-500">
+      * 部分縣市第三胎以上金額更高，請點擊縣市名稱查看完整資訊。
+      金額資料透過 JavaScript 動態載入以確保最新。
+    </p>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/filter.js' %}"></script>
+{% endblock %}

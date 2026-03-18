@@ -1,0 +1,403 @@
+version: "2026.03"
+last_verified: "2026-03-18"
+description: "各縣市生育獎勵金（一次性補助）"
+
+# Note: Amounts in NTD. Data reflects 2025-2026 policies.
+# Some cities have updated policies effective 2025.
+
+cities:
+  TPE:
+    name: 台北市
+    amounts:
+      - birth_order: 1
+        amount: 40000
+        note: ""
+      - birth_order: 2
+        amount: 45000
+        note: ""
+      - birth_order: 3
+        amount: 50000
+        note: "Third child and above"
+    eligibility:
+      registration_months: 10
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.gov.taipei/"
+
+  NWT:
+    name: 新北市
+    amounts:
+      - birth_order: 1
+        amount: 30000
+        note: ""
+      - birth_order: 2
+        amount: 30000
+        note: ""
+      - birth_order: 3
+        amount: 30000
+        note: ""
+    eligibility:
+      registration_months: 10
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.ntpc.gov.tw/"
+
+  KEL:
+    name: 基隆市
+    amounts:
+      - birth_order: 1
+        amount: 20000
+        note: ""
+      - birth_order: 2
+        amount: 20000
+        note: ""
+      - birth_order: 3
+        amount: 30000
+        note: ""
+    eligibility:
+      registration_months: 10
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.klcg.gov.tw/"
+
+  TYN:
+    name: 桃園市
+    amounts:
+      - birth_order: 1
+        amount: 30000
+        note: ""
+      - birth_order: 2
+        amount: 40000
+        note: ""
+      - birth_order: 3
+        amount: 50000
+        note: "Third child and above"
+    eligibility:
+      registration_months: 12
+      income_limit: null
+    application_deadline_days: 180
+    source_url: "https://www.tycg.gov.tw/"
+
+  HSZ:
+    name: 新竹市
+    amounts:
+      - birth_order: 1
+        amount: 30000
+        note: ""
+      - birth_order: 2
+        amount: 50000
+        note: ""
+      - birth_order: 3
+        amount: 50000
+        note: ""
+    eligibility:
+      registration_months: 12
+      income_limit: null
+    application_deadline_days: 90
+    source_url: "https://www.hccg.gov.tw/"
+
+  HSH:
+    name: 新竹縣
+    amounts:
+      - birth_order: 1
+        amount: 20000
+        note: ""
+      - birth_order: 2
+        amount: 30000
+        note: ""
+      - birth_order: 3
+        amount: 50000
+        note: ""
+    eligibility:
+      registration_months: 6
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.hsinchu.gov.tw/"
+
+  ZMI:
+    name: 苗栗縣
+    amounts:
+      - birth_order: 1
+        amount: 10000
+        note: "Paid in installments"
+      - birth_order: 2
+        amount: 20000
+        note: ""
+      - birth_order: 3
+        amount: 40000
+        note: ""
+    eligibility:
+      registration_months: 12
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.miaoli.gov.tw/"
+
+  TXG:
+    name: 台中市
+    amounts:
+      - birth_order: 1
+        amount: 20000
+        note: ""
+      - birth_order: 2
+        amount: 30000
+        note: ""
+      - birth_order: 3
+        amount: 50000
+        note: "Third child and above"
+    eligibility:
+      registration_months: 6
+      income_limit: null
+    application_deadline_days: 180
+    source_url: "https://www.taichung.gov.tw/"
+
+  CHW:
+    name: 彰化縣
+    amounts:
+      - birth_order: 1
+        amount: 30000
+        note: ""
+      - birth_order: 2
+        amount: 30000
+        note: ""
+      - birth_order: 3
+        amount: 60000
+        note: ""
+    eligibility:
+      registration_months: 6
+      income_limit: null
+    application_deadline_days: 90
+    source_url: "https://www.chcg.gov.tw/"
+
+  NTO:
+    name: 南投縣
+    amounts:
+      - birth_order: 1
+        amount: 20000
+        note: ""
+      - birth_order: 2
+        amount: 20000
+        note: ""
+      - birth_order: 3
+        amount: 30000
+        note: ""
+    eligibility:
+      registration_months: 6
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.nantou.gov.tw/"
+
+  YUN:
+    name: 雲林縣
+    amounts:
+      - birth_order: 1
+        amount: 20000
+        note: ""
+      - birth_order: 2
+        amount: 30000
+        note: ""
+      - birth_order: 3
+        amount: 30000
+        note: ""
+    eligibility:
+      registration_months: 6
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.yunlin.gov.tw/"
+
+  CYI:
+    name: 嘉義市
+    amounts:
+      - birth_order: 1
+        amount: 20000
+        note: ""
+      - birth_order: 2
+        amount: 30000
+        note: ""
+      - birth_order: 3
+        amount: 30000
+        note: ""
+    eligibility:
+      registration_months: 6
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.chiayi.gov.tw/"
+
+  CYH:
+    name: 嘉義縣
+    amounts:
+      - birth_order: 1
+        amount: 12000
+        note: ""
+      - birth_order: 2
+        amount: 24000
+        note: ""
+      - birth_order: 3
+        amount: 36000
+        note: ""
+    eligibility:
+      registration_months: 6
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.cyhg.gov.tw/"
+
+  TNN:
+    name: 台南市
+    amounts:
+      - birth_order: 1
+        amount: 20000
+        note: ""
+      - birth_order: 2
+        amount: 30000
+        note: ""
+      - birth_order: 3
+        amount: 30000
+        note: ""
+    eligibility:
+      registration_months: 6
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.tainan.gov.tw/"
+
+  KHH:
+    name: 高雄市
+    amounts:
+      - birth_order: 1
+        amount: 30000
+        note: ""
+      - birth_order: 2
+        amount: 30000
+        note: ""
+      - birth_order: 3
+        amount: 50000
+        note: ""
+    eligibility:
+      registration_months: 6
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.kcg.gov.tw/"
+
+  PIF:
+    name: 屏東縣
+    amounts:
+      - birth_order: 1
+        amount: 20000
+        note: ""
+      - birth_order: 2
+        amount: 30000
+        note: ""
+      - birth_order: 3
+        amount: 40000
+        note: ""
+    eligibility:
+      registration_months: 6
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.pthg.gov.tw/"
+
+  ILA:
+    name: 宜蘭縣
+    amounts:
+      - birth_order: 1
+        amount: 20000
+        note: ""
+      - birth_order: 2
+        amount: 30000
+        note: ""
+      - birth_order: 3
+        amount: 50000
+        note: ""
+    eligibility:
+      registration_months: 12
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.e-land.gov.tw/"
+
+  HUN:
+    name: 花蓮縣
+    amounts:
+      - birth_order: 1
+        amount: 20000
+        note: ""
+      - birth_order: 2
+        amount: 30000
+        note: ""
+      - birth_order: 3
+        amount: 50000
+        note: ""
+    eligibility:
+      registration_months: 12
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.hl.gov.tw/"
+
+  TTT:
+    name: 台東縣
+    amounts:
+      - birth_order: 1
+        amount: 10000
+        note: ""
+      - birth_order: 2
+        amount: 15000
+        note: ""
+      - birth_order: 3
+        amount: 20000
+        note: ""
+    eligibility:
+      registration_months: 6
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.taitung.gov.tw/"
+
+  PEH:
+    name: 澎湖縣
+    amounts:
+      - birth_order: 1
+        amount: 30000
+        note: ""
+      - birth_order: 2
+        amount: 50000
+        note: ""
+      - birth_order: 3
+        amount: 70000
+        note: "Generous bonus for island retention"
+    eligibility:
+      registration_months: 6
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.penghu.gov.tw/"
+
+  KMN:
+    name: 金門縣
+    amounts:
+      - birth_order: 1
+        amount: 40000
+        note: ""
+      - birth_order: 2
+        amount: 60000
+        note: ""
+      - birth_order: 3
+        amount: 80000
+        note: "Highest in Taiwan for island retention"
+    eligibility:
+      registration_months: 6
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.kinmen.gov.tw/"
+
+  LNN:
+    name: 連江縣
+    amounts:
+      - birth_order: 1
+        amount: 40000
+        note: ""
+      - birth_order: 2
+        amount: 60000
+        note: ""
+      - birth_order: 3
+        amount: 80000
+        note: ""
+    eligibility:
+      registration_months: 6
+      income_limit: null
+    application_deadline_days: 60
+    source_url: "https://www.matsu.gov.tw/"

@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}台灣托育補助資訊網 — 生育補助、育兒津貼一站式查詢{% endblock %}
+
+{% block content %}
+<!-- Hero section -->
+<section class="bg-gradient-to-br from-primary-50 via-white to-warm-50">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
+        生孩子，政府幫你<span class="text-primary-600">多少</span>？
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
+        整合全台 22 縣市生育獎勵、育兒津貼、托育補助資訊，<br class="hidden sm:block">
+        讓你一次看清楚、不遺漏任何一筆補助。
+      </p>
+      <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <a href="/calculator/" class="btn-primary text-base px-8 py-3">
+          開始試算我的補助
+        </a>
+        <a href="/subsidies/" class="btn-secondary text-base px-8 py-3">
+          瀏覽所有補助
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick stats -->
+<section class="border-y border-gray-200 bg-white">
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 gap-6 sm:grid-cols-4">
+      <div class="text-center">
+        <div class="text-3xl font-bold text-primary-600">22</div>
+        <div class="mt-1 text-sm text-gray-600">縣市資料</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl font-bold text-primary-600">4+</div>
+        <div class="mt-1 text-sm text-gray-600">補助類型</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl font-bold text-primary-600">5,000</div>
+        <div class="mt-1 text-sm text-gray-600">元/月起（育兒津貼）</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl font-bold text-primary-600">80%</div>
+        <div class="mt-1 text-sm text-gray-600">薪資（育嬰留停）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Subsidy types overview -->
+<section class="py-16">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h2 class="section-title text-center">四大補助一次看</h2>
+    <p class="mx-auto mt-4 max-w-2xl text-center text-gray-600">
+      從懷孕到孩子長大，政府提供多種補助方案。了解你可以申請哪些。
+    </p>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <!-- Birth bonus -->
+      <a href="/subsidies/type/birth_bonus/" class="card group">
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-pink-100 text-pink-600 group-hover:bg-pink-200 transition-colors">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-900">生育獎勵金</h3>
+        <p class="mt-2 text-sm text-gray-600">一次性獎勵，各縣市金額不同，最高可達 8 萬元。</p>
+        <div class="mt-4 text-sm font-medium text-primary-600">查看各縣市金額 &rarr;</div>
+      </a>
+
+      <!-- Childcare allowance -->
+      <a href="/subsidies/type/childcare_allowance/" class="card group">
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600 group-hover:bg-blue-200 transition-colors">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-900">育兒津貼</h3>
+        <p class="mt-2 text-sm text-gray-600">每月 5,000～7,000 元，0-5 歲自行照顧可領。</p>
+        <div class="mt-4 text-sm font-medium text-primary-600">了解更多 &rarr;</div>
+      </a>
+
+      <!-- Daycare subsidy -->
+      <a href="/subsidies/type/daycare_subsidy/" class="card group">
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 text-green-600 group-hover:bg-green-200 transition-colors">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-900">托育補助</h3>
+        <p class="mt-2 text-sm text-gray-600">送公托或準公共托育，每月最高 15,000 元補助。</p>
+        <div class="mt-4 text-sm font-medium text-primary-600">了解更多 &rarr;</div>
+      </a>
+
+      <!-- Parental leave -->
+      <a href="/subsidies/type/parental_leave/" class="card group">
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-amber-100 text-amber-600 group-hover:bg-amber-200 transition-colors">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-900">育嬰留停津貼</h3>
+        <p class="mt-2 text-sm text-gray-600">投保薪資 80%，最長 6 個月，父母各自可申請。</p>
+        <div class="mt-4 text-sm font-medium text-primary-600">了解更多 &rarr;</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- City quick links -->
+<section class="bg-white py-16">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h2 class="section-title text-center">選擇你的縣市</h2>
+    <p class="mx-auto mt-4 max-w-2xl text-center text-gray-600">
+      點擊縣市查看完整的在地補助資訊。
+    </p>
+
+    <div class="mt-12 space-y-8">
+      {% for region_name, region_cities in regions.items %}
+      <div>
+        <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-500">
+          {% if region_name == "north" %}北部{% elif region_name == "central" %}中部{% elif region_name == "south" %}南部{% elif region_name == "east" %}東部{% elif region_name == "island" %}離島{% endif %}
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {% for city in region_cities %}
+          <a href="/subsidies/city/{{ city.slug }}/"
+             class="rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700 transition-colors">
+            {{ city.name }}
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-primary-600 py-16">
+  <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-white">不確定能領多少？</h2>
+    <p class="mx-auto mt-4 max-w-xl text-lg text-primary-100">
+      輸入你的基本資訊，幫你算出可以申請的所有補助，還有建議的生產時機。
+    </p>
+    <a href="/calculator/" class="mt-8 inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 text-base font-semibold text-primary-600 hover:bg-primary-50 transition-colors">
+      前往試算器
+    </a>
+  </div>
+</section>
+{% endblock %}

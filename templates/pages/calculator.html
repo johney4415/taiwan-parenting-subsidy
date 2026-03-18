@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}補助試算器 — 台灣托育補助資訊網{% endblock %}
+{% block meta_description %}輸入基本資訊，立即試算可申請的生育補助、育兒津貼、托育補助，以及建議生產月份。{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+  <h1 class="section-title">補助試算器</h1>
+  <p class="mt-2 text-gray-600">填寫基本資訊，幫你算出可以申請的所有補助。</p>
+
+  <!-- Calculator form -->
+  <form id="calculator-form" class="mt-8 space-y-8">
+    <!-- Step 1: Basic info -->
+    <div class="card" id="step-1">
+      <h2 class="text-lg font-semibold text-gray-900 mb-4">
+        <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary-100 text-sm font-bold text-primary-700 mr-2">1</span>
+        基本資訊
+      </h2>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label for="city" class="block text-sm font-medium text-gray-700 mb-1">戶籍地</label>
+          <select id="city" name="city" required
+                  class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+            <option value="">請選擇縣市</option>
+            {% for city in cities %}
+            <option value="{{ city.code }}">{{ city.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div>
+          <label for="birth-order" class="block text-sm font-medium text-gray-700 mb-1">第幾胎</label>
+          <select id="birth-order" name="birth_order" required
+                  class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+            <option value="1">第一胎</option>
+            <option value="2">第二胎</option>
+            <option value="3">第三胎（含以上）</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Care type & work -->
+    <div class="card" id="step-2">
+      <h2 class="text-lg font-semibold text-gray-900 mb-4">
+        <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary-100 text-sm font-bold text-primary-700 mr-2">2</span>
+        照顧方式與工作
+      </h2>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">預計照顧方式</label>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <label class="flex items-center gap-3 rounded-lg border border-gray-200 p-3 cursor-pointer hover:border-primary-300 has-[:checked]:border-primary-500 has-[:checked]:bg-primary-50">
+              <input type="radio" name="care_type" value="self" class="text-primary-600 focus:ring-primary-500">
+              <div>
+                <div class="text-sm font-medium text-gray-900">自行照顧</div>
+                <div class="text-xs text-gray-500">父母或親屬照顧</div>
+              </div>
+            </label>
+            <label class="flex items-center gap-3 rounded-lg border border-gray-200 p-3 cursor-pointer hover:border-primary-300 has-[:checked]:border-primary-500 has-[:checked]:bg-primary-50">
+              <input type="radio" name="care_type" value="public" class="text-primary-600 focus:ring-primary-500">
+              <div>
+                <div class="text-sm font-medium text-gray-900">公共化托育</div>
+                <div class="text-xs text-gray-500">公設民營托嬰中心</div>
+              </div>
+            </label>
+            <label class="flex items-center gap-3 rounded-lg border border-gray-200 p-3 cursor-pointer hover:border-primary-300 has-[:checked]:border-primary-500 has-[:checked]:bg-primary-50">
+              <input type="radio" name="care_type" value="quasi_public" class="text-primary-600 focus:ring-primary-500" checked>
+              <div>
+                <div class="text-sm font-medium text-gray-900">準公共化托育</div>
+                <div class="text-xs text-gray-500">簽約保母或準公共托嬰中心</div>
+              </div>
+            </label>
+            <label class="flex items-center gap-3 rounded-lg border border-gray-200 p-3 cursor-pointer hover:border-primary-300 has-[:checked]:border-primary-500 has-[:checked]:bg-primary-50">
+              <input type="radio" name="care_type" value="private" class="text-primary-600 focus:ring-primary-500">
+              <div>
+                <div class="text-sm font-medium text-gray-900">私立托育</div>
+                <div class="text-xs text-gray-500">私立托嬰中心或私人保母</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label for="income-tax-rate" class="block text-sm font-medium text-gray-700 mb-1">家庭所得稅率級距</label>
+          <select id="income-tax-rate" name="income_tax_rate"
+                  class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+            <option value="0">0%（免稅）</option>
+            <option value="5" selected>5%</option>
+            <option value="12">12%</option>
+            <option value="20">20%</option>
+            <option value="30">30%</option>
+            <option value="40">40%</option>
+          </select>
+          <p class="mt-1 text-xs text-gray-500">所得稅率 20% 以上將無法申請育兒津貼及托育補助</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Parental leave -->
+    <div class="card" id="step-3">
+      <h2 class="text-lg font-semibold text-gray-900 mb-4">
+        <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary-100 text-sm font-bold text-primary-700 mr-2">3</span>
+        育嬰留停
+      </h2>
+
+      <div class="space-y-4">
+        <div>
+          <label class="flex items-center gap-3">
+            <input type="checkbox" id="parental-leave" name="parental_leave" value="1"
+                   class="rounded text-primary-600 focus:ring-primary-500">
+            <span class="text-sm font-medium text-gray-700">預計申請育嬰留停</span>
+          </label>
+        </div>
+
+        <div id="salary-input" class="hidden">
+          <label for="insured-salary" class="block text-sm font-medium text-gray-700 mb-1">月投保薪資（元）</label>
+          <input type="number" id="insured-salary" name="insured_salary"
+                 min="0" max="45800" step="100" value="36300"
+                 class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+          <p class="mt-1 text-xs text-gray-500">投保薪資上限為 45,800 元</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="text-center">
+      <button type="submit" class="btn-primary text-base px-10 py-3">
+        計算我的補助
+      </button>
+    </div>
+  </form>
+
+  <!-- Results -->
+  <div id="calculator-results" class="mt-12 hidden">
+    <h2 class="section-title">試算結果</h2>
+
+    <!-- Summary -->
+    <div class="mt-6 grid gap-4 sm:grid-cols-3">
+      <div class="card text-center bg-green-50 border-green-200">
+        <div class="text-sm text-green-700">一次性補助總計</div>
+        <div class="mt-1 text-3xl font-bold text-green-700" id="result-one-time-total">—</div>
+        <div class="text-sm text-green-600">元</div>
+      </div>
+      <div class="card text-center bg-blue-50 border-blue-200">
+        <div class="text-sm text-blue-700">每月補助合計</div>
+        <div class="mt-1 text-3xl font-bold text-blue-700" id="result-monthly-total">—</div>
+        <div class="text-sm text-blue-600">元/月</div>
+      </div>
+      <div class="card text-center bg-amber-50 border-amber-200">
+        <div class="text-sm text-amber-700">每月預估自付額</div>
+        <div class="mt-1 text-3xl font-bold text-amber-700" id="result-net-cost">—</div>
+        <div class="text-sm text-amber-600">元/月</div>
+      </div>
+    </div>
+
+    <!-- Detail lists -->
+    <div class="mt-8 space-y-6">
+      <div id="result-one-time-list"></div>
+      <div id="result-monthly-list"></div>
+    </div>
+
+    <!-- Recommended birth months -->
+    <div class="mt-10" id="result-birth-months">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">建議生產月份分析</h3>
+      <p class="text-sm text-gray-600 mb-4">以公托招生梯次和補助申請時程為主要考量。分數越高代表時機越有利。</p>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" id="birth-months-grid"></div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="mt-8 rounded-lg bg-yellow-50 border border-yellow-200 p-4">
+      <p class="text-sm text-yellow-800">
+        <strong>免責聲明：</strong>本試算結果僅供參考，實際金額以各縣市政府公告為準。
+        補助政策可能隨時調整，建議申請前再次確認最新規定。
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/calculator/engine.js' %}"></script>
+<script src="{% static 'js/calculator/ui.js' %}"></script>
+<script src="{% static 'js/calculator/renderer.js' %}"></script>
+<script src="{% static 'js/calculator/main.js' %}"></script>
+{% endblock %}
