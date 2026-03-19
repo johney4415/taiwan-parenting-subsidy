@@ -76,6 +76,12 @@ def load_central_birth_subsidy() -> dict[str, Any]:
     )
 
 
+@lru_cache(maxsize=1)
+def load_daycare_centers() -> dict[str, Any]:
+    """Load daycare centers data."""
+    return _load_yaml(settings.DATA_DIR / "daycare_centers.yaml")
+
+
 def load_all_subsidies() -> dict[str, Any]:
     """Load all subsidy data combined."""
     return {
@@ -85,6 +91,7 @@ def load_all_subsidies() -> dict[str, Any]:
         "daycare_subsidy": load_daycare_subsidy(),
         "parental_leave": load_parental_leave(),
         "daycare_fees": load_daycare_fees(),
+        "daycare_centers": load_daycare_centers(),
     }
 
 
@@ -124,6 +131,10 @@ def get_city_subsidies(city_code: str) -> dict[str, Any]:
         "fee_ranges": fees["fee_ranges"],
         "city_public_fee": fees.get("city_public_fees", {}).get(city_code, {}),
     }
+
+    # Daycare centers
+    centers_data = load_daycare_centers()
+    result["daycare_centers"] = centers_data.get("cities", {}).get(city_code, {})
 
     return result
 

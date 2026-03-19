@@ -1,0 +1,163 @@
+version: "2026.03"
+last_verified: "2026-03-19"
+
+# Daycare center query links and approximate counts by city.
+# Since there is no unified API, we store external query URLs
+# and approximate counts for reference.
+
+sfaa_query_url: "https://ncwisweb.sfaa.gov.tw/home/childcare-center"
+
+cities:
+  TPE:
+    query_url: "https://dosw.gov.taipei/Content_List.aspx?n=84CB4B98A5AF5DCB"
+    public_count: 42
+    quasi_public_count: 85
+    private_count: 50
+    notes: "台北市公辦民營及社區公共托育家園數量為全國最多"
+
+  NWT:
+    query_url: "https://www.sw.ntpc.gov.tw/home.jsp?id=5e7a8e49bcb1bc01"
+    public_count: 52
+    quasi_public_count: 110
+    private_count: 65
+    notes: "新北市幅員遼闊，各區托育資源差異較大"
+
+  KEL:
+    query_url: "https://social.klcg.gov.tw/"
+    public_count: 5
+    quasi_public_count: 12
+    private_count: 8
+    notes: ""
+
+  TYN:
+    query_url: "https://sab.tycg.gov.tw/"
+    public_count: 25
+    quasi_public_count: 55
+    private_count: 35
+    notes: "桃園市近年積極擴增公共化托育設施"
+
+  HSZ:
+    query_url: "https://social.hccg.gov.tw/"
+    public_count: 8
+    quasi_public_count: 20
+    private_count: 15
+    notes: ""
+
+  HSH:
+    query_url: "https://sw.hsinchu.gov.tw/"
+    public_count: 6
+    quasi_public_count: 15
+    private_count: 10
+    notes: ""
+
+  ZMI:
+    query_url: "https://mlshb.miaoli.gov.tw/"
+    public_count: 5
+    quasi_public_count: 10
+    private_count: 8
+    notes: ""
+
+  TXG:
+    query_url: "https://www.society.taichung.gov.tw/"
+    public_count: 30
+    quasi_public_count: 65
+    private_count: 45
+    notes: "台中市持續擴建公設民營托嬰中心"
+
+  CHW:
+    query_url: "https://social.chcg.gov.tw/"
+    public_count: 8
+    quasi_public_count: 18
+    private_count: 12
+    notes: ""
+
+  NTO:
+    query_url: "https://www.nthcc.gov.tw/"
+    public_count: 4
+    quasi_public_count: 8
+    private_count: 5
+    notes: ""
+
+  YUN:
+    query_url: "https://www4.yunlin.gov.tw/social/"
+    public_count: 5
+    quasi_public_count: 10
+    private_count: 6
+    notes: ""
+
+  CYI:
+    query_url: "https://social.chiayi.gov.tw/"
+    public_count: 3
+    quasi_public_count: 8
+    private_count: 5
+    notes: ""
+
+  CYH:
+    query_url: "https://sabcc.cyhg.gov.tw/"
+    public_count: 4
+    quasi_public_count: 8
+    private_count: 5
+    notes: ""
+
+  TNN:
+    query_url: "https://social.tainan.gov.tw/"
+    public_count: 22
+    quasi_public_count: 50
+    private_count: 30
+    notes: "台南市社會局提供線上托育機構查詢服務"
+
+  KHH:
+    query_url: "https://socbu.kcg.gov.tw/"
+    public_count: 25
+    quasi_public_count: 55
+    private_count: 35
+    notes: "高雄市積極推動準公共化托育政策"
+
+  PIF:
+    query_url: "https://www.pthg.gov.tw/social/"
+    public_count: 6
+    quasi_public_count: 12
+    private_count: 8
+    notes: ""
+
+  ILA:
+    query_url: "https://sabcc.e-land.gov.tw/"
+    public_count: 4
+    quasi_public_count: 10
+    private_count: 6
+    notes: ""
+
+  HUN:
+    query_url: "https://sa.hl.gov.tw/"
+    public_count: 4
+    quasi_public_count: 8
+    private_count: 5
+    notes: ""
+
+  TTT:
+    query_url: "https://social.taitung.gov.tw/"
+    public_count: 3
+    quasi_public_count: 5
+    private_count: 3
+    notes: ""
+
+  PEH:
+    query_url: "https://www.penghu.gov.tw/social/"
+    public_count: 1
+    quasi_public_count: 3
+    private_count: 2
+    notes: "離島地區托育資源較為有限"
+
+  KMN:
+    query_url: "https://social.kinmen.gov.tw/"
+    public_count: 1
+    quasi_public_count: 2
+    private_count: 1
+    notes: "離島地區托育資源較為有限"
+
+  LNN:
+    query_url: "https://social.matsu.gov.tw/"
+    public_count: 1
+    quasi_public_count: 1
+    private_count: 1
+    notes: "離島地區托育資源較為有限，連江縣設有少數托育據點"

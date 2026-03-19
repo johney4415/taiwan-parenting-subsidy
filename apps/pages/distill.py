@@ -43,6 +43,17 @@ urlpatterns = [
         name="type_detail",
         distill_func=get_all_subsidy_types,
     ),
+    distill_path(
+        "daycare-centers/",
+        views.daycare_centers,
+        name="daycare_centers",
+    ),
+    distill_path(
+        "daycare-centers/<slug:slug>/",
+        views.daycare_centers_city,
+        name="daycare_centers_city",
+        distill_func=get_all_city_slugs,
+    ),
     distill_path("about/", views.about, name="about"),
     distill_path("robots.txt", views.robots_txt, name="robots_txt"),
     distill_path("sitemap.xml", views.sitemap_xml, name="sitemap_xml"),

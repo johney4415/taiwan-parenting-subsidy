@@ -9,6 +9,7 @@ from apps.core.data_loader import (
     load_all_subsidies,
     load_birth_bonus,
     load_cities,
+    load_daycare_centers,
 )
 
 SUBSIDY_TYPE_LABELS: dict[str, str] = {
@@ -90,6 +91,63 @@ def type_detail(request: HttpRequest, subsidy_type: str) -> HttpResponse:
     )
 
 
+def daycare_centers(request: HttpRequest) -> HttpResponse:
+    """Daycare centers listing page with all cities."""
+    cities = load_cities()
+    centers_data = load_daycare_centers()
+
+    # Merge center info into each city dict
+    city_centers: list[dict] = []
+    for city in cities:
+        center_info = centers_data.get("cities", {}).get(city["code"], {})
+        city_centers.append(
+            {
+                **city,
+                "center_info": center_info,
+                "total_count": (
+                    center_info.get("public_count", 0)
+                    + center_info.get("quasi_public_count", 0)
+                    + center_info.get("private_count", 0)
+                ),
+            }
+        )
+
+    return render(
+        request,
+        "pages/daycare_centers/index.html",
+        {
+            "cities": city_centers,
+            "sfaa_query_url": centers_data.get("sfaa_query_url", ""),
+        },
+    )
+
+
+def daycare_centers_city(request: HttpRequest, slug: str) -> HttpResponse:
+    """Detail page for a specific city's daycare centers."""
+    city = get_city_by_slug(slug)
+    if city is None:
+        raise Http404(f"City not found: {slug}")
+
+    centers_data = load_daycare_centers()
+    center_info = centers_data.get("cities", {}).get(city["code"], {})
+    total_count = (
+        center_info.get("public_count", 0)
+        + center_info.get("quasi_public_count", 0)
+        + center_info.get("private_count", 0)
+    )
+
+    return render(
+        request,
+        "pages/daycare_centers/city_detail.html",
+        {
+            "city": city,
+            "center_info": center_info,
+            "total_count": total_count,
+            "sfaa_query_url": centers_data.get("sfaa_query_url", ""),
+        },
+    )
+
+
 def about(request: HttpRequest) -> HttpResponse:
     """About page with disclaimers."""
     return render(request, "pages/about.html")
@@ -110,10 +168,12 @@ def sitemap_xml(request: HttpRequest) -> HttpResponse:
         "/",
         "/subsidies/",
         "/calculator/",
+        "/daycare-centers/",
         "/about/",
     ]
     for city in cities:
         urls.append(f"/subsidies/city/{city['slug']}/")
+        urls.append(f"/daycare-centers/{city['slug']}/")
     for stype in subsidy_types:
         urls.append(f"/subsidies/type/{stype}/")
 

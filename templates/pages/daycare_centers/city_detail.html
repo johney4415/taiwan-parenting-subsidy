@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ city.name }}托嬰中心查詢 — 台灣托育補助資訊網{% endblock %}
+{% block meta_description %}{{ city.name }}托嬰中心查詢，包含公設民營、準公共、私立托嬰中心數量與官方查詢連結。{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+  <!-- Breadcrumb -->
+  <nav class="mb-6 text-sm text-gray-500">
+    <a href="{{ SITE_PREFIX }}/" class="hover:text-primary-600">首頁</a>
+    <span class="mx-2">/</span>
+    <a href="{{ SITE_PREFIX }}/daycare-centers/" class="hover:text-primary-600">托嬰中心查詢</a>
+    <span class="mx-2">/</span>
+    <span class="text-gray-900">{{ city.name }}</span>
+  </nav>
+
+  <h1 class="section-title">{{ city.name }}托嬰中心</h1>
+  <p class="mt-2 text-gray-600">查詢{{ city.name }}的托嬰中心資訊，包含公設民營、準公共及私立托嬰中心。</p>
+
+  <!-- Center count summary cards -->
+  <div class="mt-8 grid gap-4 sm:grid-cols-4">
+    <div class="card text-center">
+      <div class="text-3xl font-bold text-primary-600">{{ total_count }}</div>
+      <div class="mt-1 text-sm text-gray-500">托嬰中心總數（約）</div>
+    </div>
+    <div class="card text-center">
+      <div class="text-3xl font-bold text-blue-600">{{ center_info.public_count|default:"0" }}</div>
+      <div class="mt-1 text-sm text-gray-500">公設民營</div>
+    </div>
+    <div class="card text-center">
+      <div class="text-3xl font-bold text-green-600">{{ center_info.quasi_public_count|default:"0" }}</div>
+      <div class="mt-1 text-sm text-gray-500">準公共</div>
+    </div>
+    <div class="card text-center">
+      <div class="text-3xl font-bold text-amber-600">{{ center_info.private_count|default:"0" }}</div>
+      <div class="mt-1 text-sm text-gray-500">私立</div>
+    </div>
+  </div>
+
+  <!-- External link buttons -->
+  <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
+    {% if center_info.query_url %}
+    <a href="{{ center_info.query_url }}" target="_blank" rel="noopener noreferrer"
+       class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary-600 px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-primary-700 transition-colors">
+      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+      </svg>
+      {{ city.name }}官方托育查詢
+    </a>
+    {% endif %}
+    <a href="{{ sfaa_query_url }}" target="_blank" rel="noopener noreferrer"
+       class="inline-flex items-center justify-center gap-2 rounded-lg border border-primary-300 bg-white px-6 py-3 text-sm font-medium text-primary-600 shadow-sm hover:bg-primary-50 transition-colors">
+      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+      </svg>
+      全國托育機構查詢平台
+    </a>
+  </div>
+
+  <!-- Notes -->
+  {% if center_info.notes %}
+  <div class="mt-6 rounded-lg border border-blue-200 bg-blue-50 p-4 text-sm text-blue-800">
+    <strong>備註：</strong>{{ center_info.notes }}
+  </div>
+  {% endif %}
+
+  <!-- Three types explanation -->
+  <div class="mt-10">
+    <h2 class="text-xl font-bold text-gray-900">托嬰中心類型說明</h2>
+    <div class="mt-6 space-y-6">
+      <div class="card border-l-4 border-blue-500">
+        <h3 class="text-lg font-semibold text-blue-600">公設民營托嬰中心</h3>
+        <p class="mt-2 text-sm text-gray-600">
+          由政府出資設立場地與設備，委託專業民間團體經營管理。收費受政府規範，通常是三種類型中費用最低的選擇。
+          家長送托公設民營托嬰中心，可申請公共化托育補助，每月補助金額較準公共化更高。
+        </p>
+        <div class="mt-3 inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700">
+          補助最高・收費最低
+        </div>
+      </div>
+
+      <div class="card border-l-4 border-green-500">
+        <h3 class="text-lg font-semibold text-green-600">準公共托嬰中心</h3>
+        <p class="mt-2 text-sm text-gray-600">
+          私立托嬰中心與政府簽訂合作契約，承諾收費不超過政府規定的上限金額，並符合一定的服務品質要求。
+          家長送托準公共托嬰中心，可申請準公共托育補助，補助金額次於公共化。
+        </p>
+        <div class="mt-3 inline-block rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
+          收費有上限・品質有保障
+        </div>
+      </div>
+
+      <div class="card border-l-4 border-amber-500">
+        <h3 class="text-lg font-semibold text-amber-600">私立托嬰中心</h3>
+        <p class="mt-2 text-sm text-gray-600">
+          未與政府簽訂合作契約的私立機構，收費由業者自行訂定。家長將孩子送至私立托嬰中心時，
+          無法申請托育補助，但可改為申請育兒津貼。
+        </p>
+        <div class="mt-3 inline-block rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-700">
+          收費自訂・可領育兒津貼
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="mt-8 rounded-lg bg-gray-50 p-4 text-xs text-gray-500">
+    <p>* 以上數量為概估值，實際數量可能因新設或退出機制而變動，請以官方查詢平台資料為準。</p>
+    <p class="mt-1">* 建議家長實地參訪托嬰中心，了解環境、師資比及收費後再做決定。</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="mt-12 text-center">
+    <a href="{{ SITE_PREFIX }}/calculator/" class="btn-primary text-base px-8 py-3">
+      試算{{ city.name }}的完整補助
+    </a>
+    <div class="mt-4">
+      <a href="{{ SITE_PREFIX }}/subsidies/city/{{ city.slug }}/" class="text-sm font-medium text-primary-600 hover:underline">
+        查看{{ city.name }}所有補助資訊 &rarr;
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

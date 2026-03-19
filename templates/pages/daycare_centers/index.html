@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}托嬰中心查詢 — 台灣托育補助資訊網{% endblock %}
+{% block meta_description %}全台各縣市托嬰中心查詢，包含公設民營、準公共、私立托嬰中心數量與官方查詢連結。{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+  <!-- Breadcrumb -->
+  <nav class="mb-6 text-sm text-gray-500">
+    <a href="{{ SITE_PREFIX }}/" class="hover:text-primary-600">首頁</a>
+    <span class="mx-2">/</span>
+    <span class="text-gray-900">托嬰中心查詢</span>
+  </nav>
+
+  <h1 class="section-title">托嬰中心查詢</h1>
+  <p class="mt-4 text-gray-600">查詢全台各縣市托嬰中心資訊，包含公設民營、準公共及私立托嬰中心。</p>
+
+  <!-- National query platform CTA -->
+  <div class="mt-8 rounded-xl border-2 border-primary-200 bg-primary-50/30 p-6 text-center">
+    <h2 class="text-lg font-bold text-gray-900">全國托育機構查詢平台</h2>
+    <p class="mt-2 text-sm text-gray-600">衛生福利部社會及家庭署提供全國托育機構線上查詢服務，可依地區、類型搜尋。</p>
+    <a href="{{ sfaa_query_url }}" target="_blank" rel="noopener noreferrer"
+       class="mt-4 inline-flex items-center gap-2 rounded-lg bg-primary-600 px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-primary-700 transition-colors">
+      前往全國查詢平台
+      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+      </svg>
+    </a>
+  </div>
+
+  <!-- City cards grid -->
+  <div class="mt-10">
+    <h2 class="text-xl font-bold text-gray-900">各縣市托嬰中心</h2>
+    <p class="mt-2 text-sm text-gray-600">點擊縣市查看詳細資訊與官方查詢連結。</p>
+
+    <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {% for city in cities %}
+      <a href="{{ SITE_PREFIX }}/daycare-centers/{{ city.slug }}/" class="card group hover:border-primary-300 hover:shadow-md transition-all">
+        <div class="flex items-center justify-between">
+          <h3 class="text-lg font-semibold text-gray-900 group-hover:text-primary-600">{{ city.name }}</h3>
+          <span class="text-xs font-medium text-gray-400 group-hover:text-primary-500">&rarr;</span>
+        </div>
+        <div class="mt-3 grid grid-cols-3 gap-2 text-center">
+          <div class="rounded-lg bg-blue-50 px-2 py-2">
+            <div class="text-lg font-bold text-blue-600">{{ city.center_info.public_count|default:"0" }}</div>
+            <div class="text-xs text-gray-500">公設民營</div>
+          </div>
+          <div class="rounded-lg bg-green-50 px-2 py-2">
+            <div class="text-lg font-bold text-green-600">{{ city.center_info.quasi_public_count|default:"0" }}</div>
+            <div class="text-xs text-gray-500">準公共</div>
+          </div>
+          <div class="rounded-lg bg-amber-50 px-2 py-2">
+            <div class="text-lg font-bold text-amber-600">{{ city.center_info.private_count|default:"0" }}</div>
+            <div class="text-xs text-gray-500">私立</div>
+          </div>
+        </div>
+        <div class="mt-2 text-right text-xs text-gray-400">
+          合計約 {{ city.total_count }} 間
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Info section -->
+  <div class="mt-12 rounded-xl bg-gray-50 p-6">
+    <h2 class="text-lg font-bold text-gray-900">托嬰中心類型說明</h2>
+    <div class="mt-4 grid gap-4 sm:grid-cols-3">
+      <div>
+        <h3 class="font-semibold text-blue-600">公設民營托嬰中心</h3>
+        <p class="mt-1 text-sm text-gray-600">由政府設立、委託民間專業團體經營，收費較低，可享有較高的托育補助。</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-green-600">準公共托嬰中心</h3>
+        <p class="mt-1 text-sm text-gray-600">與政府簽約的私立托嬰中心，收費有上限規範，家長可領取準公共托育補助。</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-amber-600">私立托嬰中心</h3>
+        <p class="mt-1 text-sm text-gray-600">未與政府簽約的私立機構，收費由業者自訂，家長可改領育兒津貼。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="mt-12 text-center">
+    <a href="{{ SITE_PREFIX }}/calculator/" class="btn-primary text-base px-8 py-3">
+      前往補助試算器
+    </a>
+  </div>
+</div>
+{% endblock %}
